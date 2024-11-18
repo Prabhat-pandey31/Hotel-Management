@@ -1,0 +1,36 @@
+package com.hotel.booking.entities;
+
+
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+
+
+
+
+import java.time.LocalDate;
+
+@Data
+@Entity
+@Table(name = "bookings")
+public class Booking {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false) // Define the foreign key column
+    private User user; // Reference to the User who made the booking
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id", nullable = false) // Define the foreign key column
+    private Room room; // Reference to the Room booked
+
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+}
+
+
+

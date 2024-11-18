@@ -1,0 +1,57 @@
+package com.hotel.booking.services.impl;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hotel.booking.entities.Booking;
+import com.hotel.booking.repository.BookingRepository;
+import com.hotel.booking.services.BookingService;
+
+import java.util.List;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+    @Autowired
+    private BookingRepository bookingRepository;
+
+    @Autowired
+    private RoomClient roomClient; // Feign client to Room Service
+
+    @Override
+    public Booking createBooking(Booking booking) {
+        // Check if the room exists in Room Service
+        Room room = roomClient.getRoomById(booking.getRoomId());
+        if (room == null) {
+            throw new RuntimeException("Room not available");
+        }
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking getBookingById(Long bookingId) {
+        return bookingRepository.findById(bookingId).orElseThrow(() -> new RuntimeException("Booking not found"));
+    }
+
+    @Override
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
+    }
+
+    @Override
+    public Booking updateBooking(Long bookingId, Booking booking) {
+        Booking existingBooking = getBookingById(bookingId);
+        existingBooking.setUserId(booking.getUserId());
+        existingBooking.setRoomId(booking.getRoomId());
+        existingBooking.setCheckInDate(booking.getCheckInDate());
+        existingBooking.setCheckOutDate(booking.getCheckOutDate());
+        return bookingRepository.save(existingBooking);
+    }
+
+    @Override
+    public void deleteBooking(Long bookingId) {
+        bookingRepository.deleteById(bookingId);
+    }
+}
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.security.web.SecurityFilterChain"/>
+    <fullyQualifiedTypeName name="com.hotel.booking.repository.BookingRepository"/>
+    <fullyQualifiedTypeName name="com.hotel.booking.entities.Booking"/>
+    <fullyQualifiedTypeName name="com.hotel.booking.entities.Room"/>
+    <fullyQualifiedTypeName name="com.hotel.room.repository.RoomRepository"/>
+    <fullyQualifiedTypeName name="com.hotel.room.services.RoomService"/>
+    <fullyQualifiedTypeName name="com.hotel.room.entities.Room"/>
+    <fullyQualifiedTypeName name="com.hotel.booking.services.RoomClient"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.openfeign.EnableFeignClients"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.server.EnableEurekaServer"/>
+    <fullyQualifiedTypeName name="com.hotel.user.repository.UserRepository"/>
+    <fullyQualifiedTypeName name="com.hotel.user.services.UserService"/>
+    <fullyQualifiedTypeName name="com.hotel.user.entities.User"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.hotel.user.entities.Booking"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.hotel.booking.services.BookingService"/>
+    <fullyQualifiedTypeName name="org.apache.catalina.User"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.hotel.booking.entities.User"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+</qualifiedTypeNameHistroy>

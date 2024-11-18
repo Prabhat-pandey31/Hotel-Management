@@ -1,0 +1,10 @@
+spring.application.name=Service-Registry
+
+server.port=8761
+
+# Disable Eureka Client behavior for the server itself
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+
+# Enable Eureka Dashboard
+eureka.server.enable-self-preservation=false

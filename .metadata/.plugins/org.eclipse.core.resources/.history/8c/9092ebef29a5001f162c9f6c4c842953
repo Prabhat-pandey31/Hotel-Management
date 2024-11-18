@@ -1,0 +1,55 @@
+package com.hotel.booking.services.impl;
+
+import com.hotel.booking.entities.Booking;
+import com.hotel.booking.repository.BookingRepository;
+import com.hotel.booking.services.BookingService;
+import com.hotel.booking.entities.Room; // Import Room entity for later reference
+
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+    @Autowired
+    private BookingRepository bookingRepository;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private final String USER_SERVICE_URL = "http://user-service/auth/users/";
+    private final String ROOM_SERVICE_URL = "http://room-service/rooms/";
+
+    @Override
+    public Booking createBooking(Booking booking) {
+        // Fetch user details from User Service
+        User user = restTemplate.getForObject(USER_SERVICE_URL + booking.getUserId(), User.class);
+        // Fetch room details from Room Service
+        Room room = restTemplate.getForObject(ROOM_SERVICE_URL + booking.getRoomId(), Room.class);
+        
+        // You can add additional logic here, such as checking room availability
+
+        // Save the booking
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking getBookingById(Long bookingId) {
+        return bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+    }
+
+    @Override
+    public List<Booking> getBookingsByUserId(Long userId) {
+        return bookingRepository.findByUserId(userId); // Retrieves bookings for the specified user
+    }
+
+    @Override
+    public void deleteBooking(Long bookingId) {
+        bookingRepository.deleteById(bookingId);
+    }
+}
